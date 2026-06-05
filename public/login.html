@@ -190,8 +190,8 @@
               window.location.href = '/index.html';
             }, 1000);
           } else {
-            showAlert('Registration successful! Please log in.', 'success');
             switchTab('login');
+            showAlert('Registration successful! Please log in.', 'success');
             document.getElementById('login-username').value = data.username;
             document.getElementById('login-password').focus();
           }
