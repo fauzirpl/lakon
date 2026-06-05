@@ -4,10 +4,10 @@ services:
   # MySQL Database Service
   db:
     image: mysql:8.0
-    container_name: planflow_db
+    container_name: lakon_db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: planflow_db_root_pass_2026
+      MYSQL_ROOT_PASSWORD: lakon_db_root_pass_2026
       MYSQL_DATABASE: workplan_db
     ports:
       - "3306:3306"
@@ -17,7 +17,7 @@ services:
       - ./setup.sql:/docker-entrypoint-initdb.d/1-setup.sql
       - ./upgrade.sql:/docker-entrypoint-initdb.d/2-upgrade.sql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pplanflow_db_root_pass_2026"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-plakon_db_root_pass_2026"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -25,7 +25,7 @@ services:
   # Express App Service
   app:
     build: .
-    container_name: planflow_app
+    container_name: lakon_app
     restart: always
     ports:
       - "3000:3000"
@@ -35,7 +35,7 @@ services:
       DB_HOST: db
       DB_PORT: 3306
       DB_USER: root
-      DB_PASSWORD: planflow_db_root_pass_2026
+      DB_PASSWORD: lakon_db_root_pass_2026
       DB_NAME: workplan_db
     depends_on:
       db:

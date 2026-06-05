@@ -16,8 +16,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // Express Session Management (In-memory storage)
 app.use(session({
-  name: 'planflow_session',
-  secret: 'planflow_indigo_secret_key_2026',
+  name: 'lakon_session',
+  secret: 'lakon_indigo_secret_key_2026',
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -237,7 +237,7 @@ app.post('/api/auth/logout', (req, res) => {
     if (err) {
       return res.status(500).json({ success: false, message: 'Could not log out.' });
     }
-    res.clearCookie('planflow_session');
+    res.clearCookie('lakon_session');
     res.json({ success: true, message: 'Logged out successfully.' });
   });
 });
@@ -1010,7 +1010,7 @@ app.get('/api/projects/:projectId/export/csv', requireAuth, async (req, res) => 
     });
 
     res.setHeader('Content-Type', 'text/csv; charset=utf-8');
-    res.setHeader('Content-Disposition', `attachment; filename="planflow_${projectName}_workplan.csv"`);
+    res.setHeader('Content-Disposition', `attachment; filename="lakon_${projectName}_workplan.csv"`);
     res.send(csvContent);
   } catch (err) {
     res.status(500).send('Database error during export: ' + err.message);
@@ -1019,5 +1019,5 @@ app.get('/api/projects/:projectId/export/csv', requireAuth, async (req, res) => 
 
 // App listener
 app.listen(PORT, () => {
-  console.log(`PlanFlow Express app listening on port http://localhost:${PORT}`);
+  console.log(`LAKON Express app listening on port http://localhost:${PORT}`);
 });

@@ -198,7 +198,7 @@ function setupEventListeners() {
   const logoutBtn = document.getElementById('btn-logout');
   if (logoutBtn) {
     logoutBtn.onclick = async () => {
-      if (confirm('Log out of PlanFlow?')) {
+      if (confirm('Log out of LAKON?')) {
         try {
           const response = await fetch('/api/auth/logout', { method: 'POST' });
           const result = await response.json();
@@ -1725,7 +1725,7 @@ async function preparePrintReport() {
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:24px; height:24px; color:#1e3a8a; stroke-width:2.5; display:inline-block; vertical-align:middle; margin-right:4px;">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0V18m0-1.5H9m0 1.5v1.5m0-1.5h7.5m0 0V18m0-1.5h1.5M9 18h7.5" />
           </svg>
-          <span style="vertical-align:middle;">PlanFlow Project Planner</span>
+          <span style="vertical-align:middle;">LAKON Project Planner</span>
         </div>
         <div class="print-header-date">
           Report Generated: <strong>${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</strong>
@@ -1831,7 +1831,7 @@ async function preparePrintReport() {
           <span class="sig-title">Prepared By:</span>
           <div class="sig-line"></div>
           <span class="sig-name">${escapeHtml(state.currentUser || 'Project Manager')}</span>
-          <span class="sig-designation">PlanFlow System Owner</span>
+          <span class="sig-designation">LAKON System Owner</span>
         </div>
         <div class="print-sig-col">
           <span class="sig-title">Approved By:</span>

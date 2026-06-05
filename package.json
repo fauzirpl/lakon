@@ -1,5 +1,5 @@
 {
-  "name": "planflow-workplan-gantt",
+  "name": "lakon-workplan-gantt",
   "version": "1.0.0",
   "description": "Premium Workplan & Gantt Chart System",
   "main": "server.js",
