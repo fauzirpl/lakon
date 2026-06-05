@@ -1,30 +1,39 @@
-# 🌌 PlanFlow Advanced Gantt System
+# 🎭 LAKON — Penjaga Alur Cerita Proyek Anda
 
-> **Forget spreadsheets. Stop fighting bloated corporate project tools. PlanFlow is a developer-centric, glassmorphic workplan designer featuring automatic scheduling cascading, resource overload sentinels, interactive comment streams, file lockers, and executive print reports.**
+> **Lupakan spreadsheet kaku dan manajemen proyek yang membosankan. LAKON mengubah setiap proyek menjadi babak cerita ("lakon"), di mana setiap tugas adalah adegan, kolaborator adalah para pemeran utama, dan progres adalah alur cerita yang berjalan. Sebuah visualisasi kerja berseni dengan estetika premium yang berkarakter kuat.**
 
 ---
 
-## ⚡ Key Highlights (Why PlanFlow?)
+## ⚡ Mengapa LAKON? (Keunikan & Karakter)
 
-PlanFlow isn't just another checklist. It is designed to act as an active pilot for your project roadmap.
+Di dalam LAKON, proyek Anda bukan sekadar tumpukan baris data. Kami merancangnya layaknya sebuah panggung pertunjukan teater, di mana setiap pergeseran peran dan waktu memengaruhi seluruh jalannya kisah.
 
-### 🔄 Recursive Schedule Whiplash (Cascade Engine)
-If you delay Task A, successor Task B shouldn't stay in the past. PlanFlow's recursive schedule engine dynamically calculates downstream successor dependencies on any schedule shift. If an overlap is triggered, it automatically cascades the dates forward, logging every update in the project audit log.
+### 🔄 Kaskade Alur Cerita (Cascade Engine)
+Jika satu adegan (tugas) tertunda, adegan berikutnya tidak boleh tertinggal di masa lalu. Mesin kaskade LAKON menghitung jalannya alur cerita secara otomatis. Begitu jadwal satu tugas bergeser, seluruh alur cerita hilir (successor) akan ikut menyesuaikan secara dinamis, menjaga agar akhir cerita tetap selaras tanpa merusak plot pertunjukan.
 
-### 👥 The Over-allocation Sentinel
-PlanFlow monitors your team's calendar load in real-time. If you assign a collaborator to overlapping tasks on the same calendar day, their load meter highlights in **Crimson Red** with a **`⚠️ Overallocated`** warning badge, protecting your team from burnout.
+### 👥 Penjaga Peran Ganda (The Over-allocation Sentinel)
+Seorang aktor tidak bisa bermain di dua panggung terpisah pada jam yang sama. LAKON memantau beban jadwal pemeran secara real-time. Jika seorang kolaborator diberikan peran di beberapa adegan yang tumpang tindih pada hari yang sama, indikator beban mereka akan menyala **Merah Crimson** dengan lencana **`⚠️ Overallocated`**—melindungi tim Anda dari kelelahan mental.
 
-### 👥 Baseline Gantt Shadowing
-Set your project baseline in stone with one click. Any future modifications to active dates will render a semi-transparent, ghost-like shadow bar directly underneath the active bar, showing the schedule variance at a glance.
+### 👥 Bayang-Bayang Lakon (Baseline Gantt Shadowing)
+Kunci naskah asli (baseline) Anda dengan sekali klik. Setiap perubahan pada alur cerita aktif akan memunculkan bayangan semi-transparan tepat di bawah bilah jadwal aktif, menunjukkan deviasi dari rencana awal panggung teater Anda secara sekilas.
 
-### 📄 Executive Print Report Compiler
-Need to present to stakeholders? Press **Print** to hide the dashboard and compile a formal corporate **Project Status Report** document layout—complete with metadata cards, summary KPIs, task roadmaps with inline timeline bars, resource allocation tables, recent activity logs, and official sign-off sheets.
+### 📄 Lembar Laporan Sutradara (Executive Print Report)
+Butuh presentasi ke produser atau pemangku kepentingan? Cukup tekan **Cetak (Print)** untuk menyembunyikan dasbor kerja dan menyusun dokumen formal **Laporan Sutradara (Project Status Report)**—lengkap dengan kartu metadata, indikator kunci alur, visualisasi lini masa, tabel beban aktor, dan catatan panggung.
 
 ---
 
 ## 🎨 Database Blueprint (Entity-Relationship)
 
-Here is how the data fits together inside MySQL:
+Berikut adalah bagaimana relasi data bekerja di balik layar (dalam MySQL), diilustrasikan dengan analogi panggung teater:
+
+* **PROJECTS** 🎭 *Lakon / Cerita Utama*
+* **TASKS** 🎬 *Adegan / Babak Kerja*
+* **USERS** 👥 *Pemeran / Tokoh*
+* **PROJECT_MEMBERS** 📋 *Daftar Pemeran Proyek*
+* **DEPENDENCIES** 🔗 *Keterkaitan Adegan*
+* **COMMENTS** 💬 *Catatan Panggung / Umpan Balik*
+* **ATTACHMENTS** 📦 *Kotak Properti / Media Locker*
+* **AUDIT_LOGS** 📝 *Buku Harian Sutradara (Audit Log)*
 
 ```mermaid
 erDiagram
@@ -116,36 +125,36 @@ erDiagram
 
 ---
 
-## 🚀 Speed Run Setup (Get Running in 60s)
+## 🚀 Speed Run Setup (Mulai dalam 60 Detik)
 
-Choose your portal: Local development or Docker container.
+Pilih salah satu metode instalasi di bawah ini:
 
-### Option A: The Docker Compose Way (Recommended)
-Make sure Docker Desktop is running. In your project root, fire this one-liner:
+### Opsi A: Menggunakan Docker Compose (Direkomendasikan)
+Pastikan Docker Desktop sudah aktif berjalan. Di direktori utama proyek Anda, jalankan perintah satu-baris berikut:
 ```bash
 docker-compose up --build -d
 ```
-> **What just happened?** Docker compiled the Node application image, grabbed MySQL 8.0, linked their network DNS, automatically mounted and ran both database schemas (`setup.sql` and `upgrade.sql`) in sequence, and launched the server on port **`3000`** while protecting database records and uploads in local persistent volumes.
+> **Apa yang terjadi di balik layar?** Docker akan mengompilasi image aplikasi Node.js, mengunduh MySQL 8.0, menghubungkan DNS jaringan keduanya, secara otomatis memuat serta mengeksekusi skema database (`setup.sql` dan `upgrade.sql`) secara berurutan, dan menjalankan server di port **`3000`** sambil mengamankan data database serta unggahan di volume lokal persisten.
 
-### Option B: Local Setup
-1. **Prepare Database**: Run MySQL (e.g., Laragon or XAMPP) on port `3306`. Run the SQL scripts:
+### Opsi B: Instalasi Lokal
+1. **Siapkan Database**: Jalankan layanan MySQL (misalnya lewat Laragon atau XAMPP) pada port `3306`. Eksekusi skrip SQL berikut:
    ```bash
    mysql -u root -p < setup.sql
    mysql -u root -p < upgrade.sql
    ```
-2. **Install modules**:
+2. **Pasang Dependencies**:
    ```bash
    npm install
    ```
-3. **Set your Variables (Optional)**:
-   You can export variables or configure them in your terminal session:
-   * `PORT` (default `3000`)
+3. **Konfigurasi Environment (Opsional)**:
+   Atur variabel lingkungan di terminal Anda atau buat berkas `.env` jika diperlukan:
+   * `PORT` (bawaan `3000`)
    * `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`
-4. **Boot Up**:
+4. **Jalankan Aplikasi**:
    ```bash
    npm start
    ```
-   For hot-reloading development:
+   Untuk mode pengembangan (hot-reloading):
    ```bash
    npm run dev
    ```
@@ -154,22 +163,22 @@ docker-compose up --build -d
 
 ## 📝 CLI Controls & Operations
 
-* **Build & Start Container**: `docker-compose up --build`
-* **Stop Container (Keep Data)**: `docker-compose down`
-* **Prune Volumes & Hard Reset**: `docker-compose down -v`
-* **View Server Container logs**: `docker-compose logs -f app`
+* **Bangun & Jalankan Kontainer**: `docker-compose up --build`
+* **Hentikan Kontainer (Data Tetap Aman)**: `docker-compose down`
+* **Hapus Volume & Reset Bersih**: `docker-compose down -v`
+* **Lihat Log Server Aplikasi**: `docker-compose logs -f app`
 
 ---
 
 ## 🌟 Interactive Features Checklist
 
-- [x] **Secure Auth Gateway**: User registration and hashed session gates.
-- [x] **Collaborator Hub**: Project owners invite other members to delegate tasks.
-- [x] **Cascade Scheduling**: Succession calendar math that resolves dates downstream automatically.
-- [x] **Milestones & Baselines**: Distinct milestone markers and visual schedule variance shadow bars.
-- [x] **Integrated Media Locker**: Upload/download attachments (max 10MB) with auto-garbage collection on deletes.
-- [x] **CSV Exports & Corporate Document Prints**: Formal status reporting with clean pagination templates.
+- [x] **Gerbang Keamanan**: Registrasi pemeran dan sesi terenkripsi.
+- [x] **Daftar Tokoh Utama (Collaborator Hub)**: Pemilik lakon mengundang tokoh lain untuk membagi adegan kerja.
+- [x] **Kaskade Alur Cerita**: Logika perhitungan jadwal yang otomatis mengalirkan perubahan ke adegan berikutnya.
+- [x] **Poin Penting & Naskah Awal (Milestones & Baselines)**: Penanda batas babak (milestones) dan bayangan naskah awal untuk melihat deviasi alur.
+- [x] **Kotak Properti Terintegrasi (Media Locker)**: Mengunggah/mengunduh lampiran (maks 10MB) dengan pembersihan otomatis saat dihapus.
+- [x] **Laporan Cetak Sutradara**: Ekspor data dan cetak laporan status proyek dengan tata letak rapi siap cetak.
 
 ---
 
-*PlanFlow — Crafting beautiful timelines, managing workloads, printing reports.*
+*LAKON — Merangkai alur cerita proyek, menyelaraskan pemeran, menyusun babak indah.*
