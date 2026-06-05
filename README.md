@@ -39,7 +39,7 @@ Berikut adalah bagaimana relasi data bekerja di balik layar (dalam MySQL), diilu
 erDiagram
     USERS {
         int id PK
-        string username UNIQUE
+        string username UK
         string password
         timestamp created_at
     }
