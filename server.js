@@ -1,4 +1,12 @@
 // server.js - Unified Express Application Server (Advanced Upgrade)
+if (typeof process.loadEnvFile === 'function') {
+  try {
+    process.loadEnvFile();
+  } catch (err) {
+    // .env file is optional (vars can be passed directly in production/docker)
+  }
+}
+
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
