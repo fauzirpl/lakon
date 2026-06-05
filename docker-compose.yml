@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  # MySQL Database Service
+  db:
+    image: mysql:8.0
+    container_name: planflow_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: planflow_db_root_pass_2026
+      MYSQL_DATABASE: workplan_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      # Automatically run base and upgrade schemas in alphabetical order on startup
+      - ./setup.sql:/docker-entrypoint-initdb.d/1-setup.sql
+      - ./upgrade.sql:/docker-entrypoint-initdb.d/2-upgrade.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pplanflow_db_root_pass_2026"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Express App Service
+  app:
+    build: .
+    container_name: planflow_app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: planflow_db_root_pass_2026
+      DB_NAME: workplan_db
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - uploads_data:/usr/src/app/uploads
+
+volumes:
+  mysql_data:
+  uploads_data:
